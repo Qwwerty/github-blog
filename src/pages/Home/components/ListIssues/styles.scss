@@ -1,0 +1,80 @@
+/*  === DESKTOP === */
+@media (min-width: 769px) {
+  .list-issues-container {
+    max-width: 54rem;
+    width: 100%;
+
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding-bottom: 14.625rem;
+
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .list-issues-item {
+      width: 26rem;
+      height: 16.25rem;
+      padding: 2rem;
+
+      background: var(--base-post);
+      border-radius: 0.75rem;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: baseline;
+
+        span {
+          max-width: 17.6875rem;
+          width: 100%;
+          height: 4rem;
+
+          display: inline-block;
+          font-weight: 700;
+          font-size: 1.25rem;
+          color: var(--base-title);
+          line-height: 32px;
+
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2; /* number of lines to show */
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
+        small {
+          font-size: 14px;
+          color: var(--base-span);
+          line-height: 1.4rem;
+        }
+      }
+
+      p {
+        margin: 1.25rem 0 0 0;
+
+        font-size: 1rem;
+        color: var(--base-text);
+        line-height: 1.6rem;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+}
+/* === END DESKTOP === */
+
+/* === MOBILE === */
+
+/* === MOBILE === */
+@media (max-width: 480px) {
+}
+
+/* === END MOBILE === */
