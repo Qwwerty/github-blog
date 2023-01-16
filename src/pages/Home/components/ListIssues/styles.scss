@@ -18,7 +18,15 @@
       padding: 2rem;
 
       background: var(--base-post);
+      border: 0.125rem solid var(--base-post);
       border-radius: 0.75rem;
+
+      cursor: pointer;
+
+      &:hover {
+        border: 0.125rem solid var(--base-label);
+        transition: border-color 0.2s;
+      }
 
       div {
         display: flex;
@@ -27,7 +35,7 @@
         align-items: baseline;
 
         span {
-          max-width: 17.6875rem;
+          max-width: 17rem;
           width: 100%;
           height: 4rem;
 

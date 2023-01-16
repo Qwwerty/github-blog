@@ -3,7 +3,7 @@
   .home-container {
     width: 100%;
 
-    section {
+    .profile-container {
       max-width: 864px;
       max-height: 212px;
       width: 100%;
@@ -38,6 +38,8 @@
       }
 
       .home-profile-info {
+        flex: 1;
+
         .home-profile-info-name {
           display: flex;
           justify-content: space-between;

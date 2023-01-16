@@ -1,30 +1,89 @@
-import "./styles.scss";
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { GithubService } from '../../../../services/github'
+import { Skeleton } from './components/Skeleton'
+import './styles.scss'
+
+interface Issue {
+  number: number
+  title: string
+  body: string
+  created_at: string
+}
+
+interface Issues {
+  items: Issue[]
+}
+
+interface FormData {
+  search: string
+}
 
 export function ListIssues() {
-  return (
-    <div className="list-issues-container">
-      {new Array(6).fill(null).map((_) => (
-        <div className="list-issues-item">
-          <div>
-            <span>JavaScript data types and data structures</span>
-            <small>Há 1 dia</small>
-          </div>
+  const [isLoading, setIsLoading] = useState(false)
+  const [issues, setIssues] = useState<Issue[]>([])
 
-          <p>
-            Programming languages all have built-in data structures, but these
-            often differ from one language to another. This article attempts to
-            list the built-in data structures available in JavaScript and what
-            properties they have. These can be used to build other data
-            structures. Wherever possible, comparisons with other languages are
-            drawn. Dynamic typing JavaScript is a loosely typed and dynamic
-            language. Variables in JavaScript are not directly associated with
-            any particular value type, and any variable can be assigned (and
-            re-assigned) values of all types: let foo = 42; // foo is now a
-            number foo = 'bar'; // foo is now a string foo = true; // foo is now
-            a boolean
-          </p>
+  const navigate = useNavigate()
+
+  const { register, handleSubmit } = useForm<FormData>({
+    mode: 'onBlur',
+  })
+
+  async function handleSearchIssues(data: FormData): Promise<void> {
+    setIsLoading(true)
+    const { search } = data
+
+    const responseIssues = await GithubService.getIssues(search)
+    setIssues(responseIssues)
+
+    setIsLoading(false)
+  }
+
+  function handleOpenIssue(number: number) {
+    navigate(`/post/${number}`)
+  }
+
+  useEffect(() => {
+    handleSearchIssues({ search: '' })
+  }, [])
+
+  return (
+    <>
+      <form
+        onSubmit={handleSubmit(handleSearchIssues)}
+        className="search-container"
+      >
+        <div>
+          <h6>Publicações</h6>
+          <span>6 publicações</span>
         </div>
-      ))}
-    </div>
-  );
+
+        <input
+          {...register('search')}
+          type="text"
+          placeholder="Buscar conteúdo"
+        />
+      </form>
+
+      <Skeleton isLoading={isLoading}>
+        <div className="list-issues-container">
+          {issues.map((issue) => (
+            <div
+              onClick={() => handleOpenIssue(issue.number)}
+              className="list-issues-item"
+              key={issue.number}
+            >
+              <div>
+                <span>{issue.title}</span>
+                <small>{issue.created_at}</small>
+              </div>
+
+              <p>{issue.body}</p>
+            </div>
+          ))}
+        </div>
+      </Skeleton>
+    </>
+  )
 }

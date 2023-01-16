@@ -1,0 +1,46 @@
+/*  === DESKTOP === */
+@media (min-width: 769px) {
+  .skeleton-list-issues-container {
+    max-width: 54rem;
+    width: 100%;
+
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding-bottom: 14.625rem;
+
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .skeleton-list-issues-box {
+      width: 26rem;
+      height: 16.25rem;
+      padding: 2rem;
+
+      background: var(--base-post);
+      border: 0.125rem solid var(--base-post);
+      border-radius: 0.75rem;
+
+      animation: react-placeholder-pulse 2s infinite;
+    }
+  }
+}
+/* === END DESKTOP === */
+
+/* === MOBILE === */
+@media (max-width: 480px) {
+}
+
+/* === END MOBILE === */
+
+@keyframes react-placeholder-pulse {
+  0% {
+    opacity: -1.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1.6;
+  }
+}
